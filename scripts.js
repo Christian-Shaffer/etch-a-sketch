@@ -3,21 +3,44 @@ const grid = document.querySelector('.grid');
 const slider = document.querySelector("#range")
 const sliderValue = document.querySelector(".value")
 
-slider.addEventListener("input", (event) => {
-    const tempSliderValue = event.target.value;
-    sliderValue.textContent = tempSliderValue;
-  })
+let tableVectorSize = 15; //default value
+let sideLength = 42.66666667; //default value
 
-let numOfSquares = prompt('Enter value');
-let sideLength = 640 / numOfSquares;
+slider.addEventListener("input", (e) => {
+    tableVectorSize = e.target.value;
+    sliderValue.textContent = tableVectorSize + " x " + tableVectorSize;
+    sideLength = 640 / tableVectorSize;
+    draw();
+  });
 
-for (let i = 0; i < (numOfSquares ** 2); i++) {
-    const square = document.createElement('div');
-    square.classList.add('square');
-    square.style.height = sideLength + "px";
-    square.style.width = sideLength + "px";
-    grid.appendChild(square);
+function draw () {
+    if (grid.firstChild) {
+        resetGrid();
+    }
+    for (let i = 0; i < (tableVectorSize ** 2); i++) {
+        const square = document.createElement('div');
+        square.classList.add('square');
+        square.style.height = sideLength + "px";
+        square.style.width = sideLength + "px";
+        grid.appendChild(square);
+    }
 }
+
+function resetGrid () {
+    while (grid.firstChild) {
+        grid.removeChild(grid.firstChild);
+    }
+}
+
+    
+    
+
+
+
+
+draw();
+
+// reset();
 
 
 
