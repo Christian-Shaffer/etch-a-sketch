@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #FFF8DC;
+}
+
+h1 {
+    text-align: center;
+    color: #5264c6;
+    font-size: 60px;
+}
+
+.grid {
+    background-color: #FFFFFF;
+    box-shadow: 5px 5px 10px 2px rgba(0,0,0,.8);
+    height: 640px;
+    width: 640px;
+    margin: 0 auto;
+    margin: 0 190px auto 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.square {
+    width: 128px;
+    height: 128px;
+    border: 3px solid black;
+}
+
+/* .slidecontainer {
+    margin-right: 30px;
+} */
+
+.slider {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    /* creating a custom design */
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    border-radius: 16px;
+    height: 6px;
+    background: #ccc;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    /* removing default appearance */
+    -webkit-appearance: none;
+    appearance: none;
+    /* creating a custom design */
+    height: 15px;
+    width: 15px;
+    background-color: #5264c6;
+    border-radius: 50%;
+    transition: .2s ease-in-out;
+  }
+
+  input[type="range"]::-moz-range-thumb {
+    height: 15px;
+    width: 15px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: 1px solid #f50;
+    box-shadow: -407px 0 0 400px #f50;
+  }
+
+  .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+  }
+
