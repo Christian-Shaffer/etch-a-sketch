@@ -130,6 +130,7 @@ function useColorWheel () {
 }
 
 clearButton.addEventListener("click", function() {
+    darkIndex = 0;
     draw();
 });
 
@@ -196,8 +197,7 @@ function draw () {
 }
 
 function setColor(color) {
-    const squares = document.querySelectorAll('.square');
-    
+    const squares = document.querySelectorAll('.square')
     if (rainbowColors.includes(color)) {
         squares.forEach(square => {
             square.onmouseover = () => {
@@ -225,5 +225,3 @@ function setColor(color) {
 
 draw();
 setColor(defaultColor);
-
-// Add toggle between click and hover mode
