@@ -4,6 +4,7 @@ const eraserButton = document.querySelector('.button.eraser');
 const clearButton = document.querySelector('.button.clear');
 const slider = document.querySelector("#range");
 const sliderValue = document.querySelector('.value');
+const colorWheel = document.querySelector('#color');
 
 let tableVectorSize = 16; // default value
 let sideLength = 40; // default value
@@ -42,23 +43,24 @@ const rainbowColors = [
     "#FFDEAD", // NavajoWhite
     "#FFE4E1", // MistyRose
     "#FFE4B5", // Moccasin
-    "#FFF8DC", // Cornsilk
     "#F0E68C", // Khaki
     "#EEE8AA", // PaleGoldenrod
     "#F5DEB3", // Wheat
   ];
 
 function pickRandomRainbowColor () {
-    let selectedColor = rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
-    return selectedColor;
+    return rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
 }
 
-let selectedColor = '';
 const eraserColor = '#FFF8DC';
 const defaultColor = '#5264c6';
 
 const square = document.createElement('div');
 square.classList.add('square'); 
+
+colorWheel.addEventListener('input', () => {
+    setColor(colorWheel.value);
+ })
 
 clearButton.addEventListener("click", function() {
     draw();
@@ -92,28 +94,22 @@ function draw () {
         square.style.width = sideLength + "px";
         grid.appendChild(square.cloneNode(true));
     }
-    setColor(selectedColor);
 }
 
 function setColor (color) {
     const squares = document.querySelectorAll('.square');
-    if (color == defaultColor) {
+    if (rainbowColors.includes(color)) {
         squares.forEach(square => {
-            square.onmouseover = () => square.style.backgroundColor = defaultColor;
+        square.onmouseover = () => square.style.backgroundColor = pickRandomRainbowColor();
         });
-        selectedColor = defaultColor;
-    } else if (color == eraserColor) {
+    } else {
         squares.forEach(square => {
-            square.onmouseover = () => square.style.backgroundColor = eraserColor;
-        });
-        selectedColor = eraserColor;
-    } else if (rainbowColors.includes(color)) {
-        squares.forEach(square => {
-            square.onmouseover = () => square.style.backgroundColor = pickRandomRainbowColor();
-        });
-        selectedColor = color;
+        square.onmouseover = () => square.style.backgroundColor = color;
+        }); 
     }
 }
 
 draw();
 setColor(defaultColor);
+
+setInterval();
