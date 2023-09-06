@@ -66,10 +66,14 @@ clearButton.addEventListener("click", function() {
 
 eraserButton.addEventListener("click", function() {
     setColor(eraserColor);
+    rainbowButton.disabled = false;
+    eraserButton.disabled = true;
 });
 
 rainbowButton.addEventListener("click", function() {
     setColor(pickRandomRainbowColor());
+    rainbowButton.disabled = true;
+    eraserButton.disabled = false;
 })
 
 slider.addEventListener("input", (e) => {
@@ -87,9 +91,6 @@ function draw () {
         square.style.height = sideLength + "px";
         square.style.width = sideLength + "px";
         grid.appendChild(square.cloneNode(true));
-        if (rainbowColors.includes(selectedColor)) {
-            square.style.backgroundColor = rainbowColors[0];
-        }
     }
     setColor(selectedColor);
 }
