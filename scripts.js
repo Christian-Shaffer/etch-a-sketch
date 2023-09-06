@@ -1,4 +1,8 @@
 const grid = document.querySelector('.grid');
+
+const colorButton = document.querySelector('.button.color');
+colorButton.disabled = true;
+
 const rainbowButton = document.querySelector('.button.rainbow');
 const eraserButton = document.querySelector('.button.eraser');
 const clearButton = document.querySelector('.button.clear');
@@ -52,15 +56,26 @@ function pickRandomRainbowColor () {
     return rainbowColors[Math.floor(Math.random() * rainbowColors.length)];
 }
 
-const eraserColor = '#FFF8DC';
+const eraserColor = '#ededed';
 const defaultColor = '#5264c6';
 
 const square = document.createElement('div');
 square.classList.add('square'); 
 
+colorButton.addEventListener("click", function() {
+    useColorWheel();
+});
+
 colorWheel.addEventListener('input', () => {
-    setColor(colorWheel.value);
+    useColorWheel();
  })
+
+function useColorWheel () {
+    setColor(colorWheel.value);
+    colorButton.disabled = true;
+    rainbowButton.disabled = false;
+    eraserButton.disabled = false;  
+}
 
 clearButton.addEventListener("click", function() {
     draw();
@@ -68,12 +83,14 @@ clearButton.addEventListener("click", function() {
 
 eraserButton.addEventListener("click", function() {
     setColor(eraserColor);
+    colorButton.disabled = false;
     rainbowButton.disabled = false;
     eraserButton.disabled = true;
 });
 
 rainbowButton.addEventListener("click", function() {
     setColor(pickRandomRainbowColor());
+    colorButton.disabled = false;
     rainbowButton.disabled = true;
     eraserButton.disabled = false;
 })
@@ -113,3 +130,5 @@ draw();
 setColor(defaultColor);
 
 setInterval();
+
+// Add toggle between click and hover mode
