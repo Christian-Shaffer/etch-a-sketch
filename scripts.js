@@ -1,10 +1,20 @@
 const grid = document.querySelector('.grid');
+const clearButton = document.querySelector('.clear-button');
+const slider = document.querySelector("#range");
+const sliderValue = document.querySelector('.value');
 
-const slider = document.querySelector("#range")
-const sliderValue = document.querySelector(".value")
+let tableVectorSize = 16; // default value
+let sideLength = 40; // default value
 
-let tableVectorSize = 15; //default value
-let sideLength = 42.66666667; //default value
+let selectedColor = '';
+const defaultColor = '#5264c6';
+
+const square = document.createElement('div');
+square.classList.add('square'); 
+
+clearButton.addEventListener("click", function() {
+    draw();
+});
 
 slider.addEventListener("input", (e) => {
     tableVectorSize = e.target.value;
@@ -14,33 +24,26 @@ slider.addEventListener("input", (e) => {
   });
 
 function draw () {
-    if (grid.firstChild) {
-        resetGrid();
-    }
-    for (let i = 0; i < (tableVectorSize ** 2); i++) {
-        const square = document.createElement('div');
-        square.classList.add('square');
-        square.style.height = sideLength + "px";
-        square.style.width = sideLength + "px";
-        grid.appendChild(square);
-    }
-}
-
-function resetGrid () {
     while (grid.firstChild) {
         grid.removeChild(grid.firstChild);
     }
+    for (let i = 0; i < (tableVectorSize ** 2); i++) {
+        square.style.height = sideLength + "px";
+        square.style.width = sideLength + "px";
+        grid.appendChild(square.cloneNode(true));
+    }
+    setColor(selectedColor);
 }
 
-    
-    
-
-
-
+function setColor (color) {
+    const squares = document.querySelectorAll('.square');
+    if (color == defaultColor) {
+        squares.forEach(square => {
+            square.onmouseover = () => square.style.backgroundColor = defaultColor;
+        });
+        selectedColor = defaultColor;
+    }
+}
 
 draw();
-
-// reset();
-
-
-
+setColor(defaultColor);
