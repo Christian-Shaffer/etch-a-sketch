@@ -79,6 +79,13 @@ function useColorWheel () {
 
 clearButton.addEventListener("click", function() {
     draw();
+    // if (colorButton.disabled == true) {
+    //     setColor(colorWheel.value);
+    // } else if (eraserButton.disabled == true) {
+    //     setColor(eraserColor);
+    // } else if (rainbowButton.disabled == true) {
+    //     setColor(pickRandomRainbowColor());
+    // }
 });
 
 eraserButton.addEventListener("click", function() {
@@ -111,6 +118,13 @@ function draw () {
         square.style.width = sideLength + "px";
         grid.appendChild(square.cloneNode(true));
     }
+    if (colorButton.disabled == true) {
+        setColor(colorWheel.value);
+    } else if (eraserButton.disabled == true) {
+        setColor(eraserColor);
+    } else if (rainbowButton.disabled == true) {
+        setColor(pickRandomRainbowColor());
+    }
 }
 
 function setColor (color) {
@@ -128,7 +142,5 @@ function setColor (color) {
 
 draw();
 setColor(defaultColor);
-
-setInterval();
 
 // Add toggle between click and hover mode
