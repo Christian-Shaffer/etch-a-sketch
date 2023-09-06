@@ -134,7 +134,7 @@ clearButton.addEventListener("click", function() {
     draw();
 });
 
-let darkIndex = 0;
+let darkIndex = 0; // used for progressing the darkening effect
 darkenButton.addEventListener("click", function() {
     setColor(darkColors[darkIndex]);
     colorButton.disabled = false;
@@ -178,14 +178,15 @@ slider.addEventListener("input", (e) => {
 
 function draw () {
     while (grid.firstChild) {
-        grid.removeChild(grid.firstChild);
+        grid.removeChild(grid.firstChild); // removes all drawn squares before redrawing
     }
     for (let i = 0; i < (tableVectorSize ** 2); i++) {
         square.style.height = sideLength + "px";
         square.style.width = sideLength + "px";
         grid.appendChild(square.cloneNode(true));
     }
-    if (colorButton.disabled == true) {
+    // This if chain ensures the right color is selected after redraw occurs
+    if (colorButton.disabled == true) { 
         setColor(colorWheel.value);
     } else if (eraserButton.disabled == true) {
         setColor(eraserColor);
@@ -208,8 +209,8 @@ function setColor(color) {
         squares.forEach(square => {
             square.onmouseover = () => {
                 square.style.backgroundColor = darken();
-                // Make sure darkIndex doesn't go out of bounds
-                if (darkIndex < darkColors.length - 1) {
+                // Makes sure darkIndex doesn't go out of bounds
+                if (darkIndex < darkColors.length - 1) { 
                     darkIndex++;
                 }
             };
@@ -224,4 +225,3 @@ function setColor(color) {
 }
 
 draw();
-setColor(defaultColor);
