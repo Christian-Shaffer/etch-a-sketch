@@ -1,4 +1,4 @@
-Nearing the end of The Odin Project, my project included creating an "etch-a-sketch" where the user can interact with a flexible grid of squares to add colors to them. 
+Nearing the end of The Odin Project Foundations, my assignment included creating an "etch-a-sketch" where the user can interact with a flexible grid of squares to add colors to them. 
 
 Link to assignment: https://www.theodinproject.com/lessons/foundations-etch-a-sketch
 
